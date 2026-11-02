@@ -30,7 +30,10 @@
             cursor: crosshair;
         }
 
-        html {
+        html, body {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
@@ -38,12 +41,10 @@
             background-color: var(--bg-black);
             color: var(--text-main);
             font-family: var(--font-body);
-            overflow-x: hidden;
             line-height: 1.6;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
         }
 
-        /* Полоса прогресса */
         #progress-bar {
             position: fixed;
             top: 0; left: 0;
@@ -67,6 +68,7 @@
             text-transform: uppercase;
             margin-bottom: 20px;
             line-height: 0.9;
+            word-break: break-word;
         }
 
         .section-title span {
@@ -101,7 +103,7 @@
             transform: translateX(0);
         }
 
-        /* ================= HERO ================= */
+        /* ================= HERO (ДЕСКТОП) ================= */
         .hero {
             position: relative;
             height: 100vh;
@@ -110,6 +112,7 @@
             justify-content: center;
             text-align: center;
             overflow: hidden;
+            width: 100%;
         }
 
         .hero-bg {
@@ -119,6 +122,11 @@
                         url('images/10.jpg') no-repeat right center/cover;
             filter: contrast(110%);
             z-index: 1;
+        }
+
+        /* Скрываем мобильную картинку на пк */
+        .mobile-hero-img {
+            display: none;
         }
 
         .hero::after {
@@ -147,7 +155,8 @@
         .hero-content {
             position: relative;
             z-index: 3;
-            padding: 0 20px;
+            padding: 0 15px;
+            width: 100%;
         }
 
         .hero-tag {
@@ -170,6 +179,7 @@
             text-transform: uppercase;
             text-shadow: 0 10px 30px rgba(0,0,0,0.8);
             margin-bottom: 20px;
+            word-break: break-word;
         }
 
         .hero-title span {
@@ -189,12 +199,15 @@
 
         /* ================= БЕГУЩАЯ СТРОКА ================= */
         .marquee-wrapper {
-            width: 100%;
+            width: 100vw;
+            width: 105vw; 
+            margin-left: -2.5vw;
             overflow: hidden;
             background: var(--spidey-red);
             padding: 15px 0;
-            transform: rotate(-2deg) scale(1.05);
-            margin: 40px 0;
+            transform: rotate(-2deg);
+            margin-top: 40px;
+            margin-bottom: 40px;
             position: relative;
             z-index: 4;
             box-shadow: 0 0 30px var(--spidey-red-glow);
@@ -203,7 +216,7 @@
         .marquee {
             display: flex;
             white-space: nowrap;
-            animation: scroll 25s linear infinite;
+            animation: scroll 8s linear infinite;
         }
 
         .marquee span {
@@ -267,8 +280,10 @@
 
         .plot-video-wrapper video {
             width: 100%;
+            height: 100%;
             aspect-ratio: 16 / 9;
             display: block;
+            object-fit: cover; 
         }
 
         /* ================= ФИЛОСОФИЯ (Сетка) ================= */
@@ -280,7 +295,6 @@
             position: relative;
         }
 
-        /* 2.png (Питер в профиль) парит слева в блоке смысла */
         .glass-grid::before {
             content: '';
             position: absolute;
@@ -298,8 +312,8 @@
 
         .glass-card {
             background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
             padding: 40px;
@@ -373,7 +387,6 @@
             transition: all 0.5s ease;
         }
 
-        /* СТАРОЕ ФОТО ПИТЕРА (3.jpg) НА МЕСТЕ */
         .split-half.hero-side {
             background: linear-gradient(to right, rgba(3,3,3,0.85), rgba(10,20,30,0.9)), url('images/3.jpg') center/cover;
             border-right: 1px solid rgba(255,255,255,0.1);
@@ -454,14 +467,13 @@
             border-left: 4px solid var(--spidey-red);
         }
 
-        /* ================= РОМАНТИКА (ПИТЕР И ГВЕН) ================= */
+        /* ================= РОМАНТИКА ================= */
         .romance-section {
             background: #050505;
             position: relative;
             overflow: hidden;
         }
 
-        /* ОБНОВЛЕНО: 8.png (Человек-паук) теперь справа на фоне */
         .romance-section::before {
             content: '';
             position: absolute;
@@ -553,7 +565,7 @@
         .cinematic-quote {
             text-align: center;
             padding: 150px 5vw;
-            background: linear-gradient(rgba(3,3,3,0.85), rgba(3,3,3,0.85)), url('images/11.jpg') center/cover fixed;
+            background: linear-gradient(rgba(3,3,3,0.85), rgba(3,3,3,0.85)), url('images/11.jpg') center/cover;
             position: relative;
         }
 
@@ -580,7 +592,7 @@
             text-transform: uppercase;
         }
 
-        /* ================= ВИДЕО (ОТРЫВОК С КРАНОВЩИКАМИ) ================= */
+        /* ================= ВИДЕО ================= */
         .video-section {
             text-align: center;
             background: linear-gradient(to bottom, var(--bg-black), #110000);
@@ -601,8 +613,10 @@
 
         .video-wrapper video {
             width: 100%;
+            height: 100%;
             aspect-ratio: 21 / 9;
             display: block;
+            object-fit: cover;
             background: #000;
         }
 
@@ -675,7 +689,7 @@
         .char-card.gwen { background: url('images/emma.jpg') center/cover; }
         .char-card.connors { background: url('images/ric.jpg') center/cover; }
         .char-card.captain { background: url('images/denis.jpg') center/cover; }
-        .char-card.ben { background: url('images/5.jpg') center/cover; }
+        .char-card.ben { background: url('images/sheen.jpg') center/cover; }
 
         .char-card::before {
             content: '';
@@ -765,24 +779,185 @@
             letter-spacing: 1px;
         }
 
-        /* Медиа-запросы */
+        /* ================= МОБИЛЬНАЯ АДАПТАЦИЯ (ТЕЛЕФОНЫ) ================= */
         @media (max-width: 900px) {
+            * { cursor: auto; }
+            .section-padding { padding: 60px 15px; }
+            .glass-grid::before, .romance-section::before { display: none; }
+
+            /* ГЛАВНЫЙ ЭКРАН (ИДЕАЛЬНОЕ КАДРИРОВАНИЕ ЧЕРЕЗ IMG) */
+            .hero {
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end; 
+                background-color: var(--bg-black);
+                padding-bottom: 30px; 
+            }
+            /* Отключаем старый фон */
+            .hero-bg { display: none; } 
+            
+            /* Показываем тег img */
+            .mobile-hero-img {
+                display: block;
+                position: absolute;
+                top: 0; left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                /* Идеальное кадрирование: чуть правее и ниже центра, чтобы видеть лицо */
+                object-position: 65% 15%; 
+                filter: contrast(110%) brightness(90%);
+                z-index: 1;
+            }
+            
+            /* Мягкий, плавный градиент снизу */
+            .hero::after {
+                content: '';
+                position: absolute;
+                bottom: 0; left: 0;
+                width: 100%;
+                height: 70%; 
+                background: linear-gradient(to bottom, rgba(3,3,3,0) 0%, rgba(3,3,3,0.85) 45%, var(--bg-black) 100%);
+                z-index: 2;
+            }
+            
+            .hero-glow { display: none; } 
+            
+            .hero-content {
+                position: relative; 
+                z-index: 3;
+                width: 100%;
+                padding: 0 15px;
+                text-align: center;
+            }
+            .hero-tag { 
+                font-size: 0.7rem; 
+                letter-spacing: 3px; 
+                padding: 5px 12px;
+                margin-bottom: 15px;
+            }
+            .hero-title { 
+                font-size: 3.8rem; 
+                line-height: 0.9; 
+                margin-bottom: 15px; 
+            }
+            .hero-title span {
+                -webkit-text-stroke: 1px var(--spidey-red);
+            }
+            .hero-subtitle { 
+                font-size: 0.95rem; 
+                max-width: 100%; 
+                margin: 0 auto;
+            }
+
+            /* Бегущая строка */
+            .marquee span { font-size: 1.3rem; padding: 0 15px; }
+
+            /* Заголовки */
+            .section-title { font-size: 2.8rem; margin-bottom: 15px; }
+            .section-desc { font-size: 1rem; margin-bottom: 40px; }
+
+            /* Сюжет */
+            .plot-container { flex-direction: column; }
+            .plot-text { padding-right: 0; margin-bottom: 20px; }
+
+            /* ГОРИЗОНТАЛЬНЫЙ СКРОЛЛ ТОЛЬКО ДЛЯ "ГЛУБИНА СМЫСЛА" */
+            .glass-grid {
+                display: flex;
+                flex-direction: row;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 15px;
+                padding-bottom: 20px;
+                scrollbar-width: none; 
+                -ms-overflow-style: none;
+                margin-left: -15px;
+                margin-right: -15px;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            .glass-grid::-webkit-scrollbar { display: none; }
+            .glass-card { flex: 0 0 85vw; scroll-snap-align: center; }
+
+            /* ОСТАЛЬНЫЕ БЛОКИ В ОДНУ КОЛОНКУ */
+            .why-grid, .characters-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 20px;
+                overflow-x: visible;
+            }
+
+            .glass-card { padding: 25px; }
+            .glass-card h3 { font-size: 1.8rem; }
+            .card-number { font-size: 4rem; }
+
+            /* Герой vs Злодей */
+            .split-section { flex-direction: column; min-height: auto; }
             .split-section::after { display: none; }
-            .romance-container { flex-direction: column; }
-            .romance-images { height: 400px; width: 100%; }
-            .romance-text { font-size: 5rem; }
-            .romance-section::before { width: 100vw; opacity: 0.05; }
-            .glass-grid::before { width: 80vw; height: 80vw; left: -20%; opacity: 0.05; }
+            .split-half { padding: 60px 15px; }
+            .split-half h2 { font-size: 3.5rem; }
+            .split-half::before { font-size: 40vw; }
+            .hero-side { border-right: none; border-bottom: 2px solid var(--spidey-red); }
+            .split-half p { font-size: 0.95rem; padding: 15px; }
+
+            /* РОМАНТИКА (ФОТО РЯДОМ) */
+            .romance-container { 
+                flex-direction: column; 
+                gap: 30px; 
+            }
+            .romance-images { 
+                display: flex !important; 
+                flex-direction: row !important; 
+                width: 100% !important; 
+                height: 200px !important; 
+                gap: 15px !important;
+                margin-bottom: 20px !important;
+                position: static !important;
+            }
+            .romance-img-1, .romance-img-2 { 
+                position: static !important; 
+                width: 50% !important; 
+                height: 200px !important; 
+                border-radius: 10px !important;
+                background-size: cover !important;
+                background-position: center top !important;
+                display: block !important;
+            }
+            .romance-img-1 { border: 2px solid rgba(255,255,255,0.2) !important; background-image: url('images/3.jpg') !important; }
+            .romance-img-2 { border: 2px solid var(--spidey-red) !important; background-image: url('images/4.jpg') !important; }
+            .romance-text { display: none !important; } 
+            
+            .romance-content blockquote { font-size: 1.1rem; padding-left: 15px; }
+
+            /* Цитата */
+            .cinematic-quote { padding: 80px 15px; }
+            .cinematic-quote blockquote { font-size: 2rem; }
+
+            /* Видео */
+            .video-wrapper video { aspect-ratio: 16 / 9; }
+            .video-quote { font-size: 1.4rem; margin-top: 30px; }
+
+            /* Персонажи */
+            .char-card { height: 400px; }
+            .char-card.peter, .char-card.gwen, .char-card.connors, .char-card.captain, .char-card.ben { 
+                background-position: center top; 
+            }
+            .char-info { transform: translateY(0); padding: 20px; }
+            .char-info p { opacity: 1; }
+            .char-info h3 { font-size: 1.8rem; }
+            .char-info p { font-size: 0.8rem; }
+            .char-card::before { background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 60%, transparent 100%); }
         }
 
-        @media (max-width: 768px) {
-            .section-padding { padding: 80px 20px; }
-            .split-section { flex-direction: column; }
-            .char-card { height: 350px; }
-            .char-info { transform: translateY(0); }
-            .char-info p { opacity: 1; }
-            .video-wrapper video { aspect-ratio: 16 / 9; }
-            .plot-container { flex-direction: column-reverse; }
+        /* Очень маленькие экраны */
+        @media (max-width: 480px) {
+            .hero-title { font-size: 3.2rem; }
+            .section-title { font-size: 2.4rem; }
+            .romance-images { height: 160px !important; } 
+            .romance-img-1, .romance-img-2 { height: 160px !important; }
+            .cinematic-quote blockquote { font-size: 1.7rem; }
+            .char-card { height: 380px; }
         }
     </style>
 </head>
@@ -793,6 +968,8 @@
     <!-- HERO -->
     <section class="hero">
         <div class="hero-bg"></div>
+        <!-- Тот самый тег img для мобилок -->
+        <img src="images/10.jpg" class="mobile-hero-img" alt="Spider-Man">
         <div class="hero-glow"></div>
         
         <div class="hero-content reveal">
@@ -821,7 +998,7 @@
             </div>
             
             <div class="plot-video-wrapper reveal">
-                <video controls poster="images/10.jpg">
+                <video controls poster="images/10.jpg" preload="metadata">
                     <source src="trailer.mp4" type="video/mp4">
                     Ваш браузер не поддерживает видео. Проверьте путь к файлу.
                 </video>
@@ -829,7 +1006,7 @@
         </div>
     </section>
 
-    <!-- ФИЛОСОФИЯ И СМЫСЛ (2.png слева) -->
+    <!-- ФИЛОСОФИЯ И СМЫСЛ -->
     <section class="section-padding">
         <h2 class="section-title reveal-left">Глубина <span>смысла</span></h2>
         <p class="section-desc reveal-left">Марк Уэбб снял не просто блокбастер. Это меланхоличная драма о взрослении, где суперсила — это лишь проклятие, а не подарок.</p>
@@ -876,7 +1053,7 @@
         </div>
     </section>
 
-    <!-- РОМАНТИКА (8.png справа) -->
+    <!-- РОМАНТИКА -->
     <section class="section-padding romance-section">
         <div class="romance-container">
             <div class="romance-images reveal-left">
@@ -888,7 +1065,7 @@
                 <h2 class="section-title">Свет в <span>темноте</span></h2>
                 <blockquote>«Ты — самое лучшее, что случилось со мной. Но именно поэтому я боюсь тебя потерять».</blockquote>
                 <p>История Питера и Гвен — это сердце фильма. Гвен Стейси — не просто «девушка в беде». Она умнее Питера, она — гениальный ученый и его равный партнер.</p>
-                <p>Их отношения — это попытка Питера удержаться за человечность. Но трагедия в том, что чем сильнее он любит, тем больше он подвергает её опасности.</p>
+                <p>Их отношения — это попытка Питера удержаться за человечность. Но трагедия в том, чем сильнее он любит, тем больше он подвергает её опасности.</p>
             </div>
         </div>
     </section>
@@ -907,7 +1084,7 @@
         <p class="section-desc reveal" style="margin: 0 auto 50px; text-align: center;">Сцена с крановщиками — это эмоциональный пик фильма. Здесь Питер перестает быть одиноким.</p>
         
         <div class="video-wrapper reveal">
-            <video controls>
+            <video controls preload="metadata">
                 <source src="cranes.mp4" type="video/mp4">
                 Ваш браузер не поддерживает видео. Проверьте путь к файлу.
             </video>
